@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -23,26 +29,34 @@ export const AuthProvider = ({ children }) => {
   });
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (token) {
-      validateToken();
-    } else {
-      setLoading(false);
-    }
+
+  const logout = useCallback(() => {
+    setToken(null);
+    setUser(null);
+    setLoading(false);
+    localStorage.removeItem("sara-admin-token");
   }, []);
 
-  const validateToken = async () => {
-    try {
-      const response = await axios.get(`${API}/auth/validate`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setUser(response.data.user);
-    } catch (error) {
-      logout();
-    } finally {
-      setLoading(false);
-    }
-  };
+const validateToken = useCallback(async () => {
+  try {
+    const response = await axios.get(`${API}/auth/validate`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setUser(response.data.user);
+  } catch (error) {
+    logout();
+  } finally {
+    setLoading(false);
+  }
+}, [token, logout]);
+useEffect(() => {
+  if (token) {
+    validateToken();
+  } else {
+    setLoading(false);
+  }
+}, [token, validateToken]);
+
 
   const login = async (username, password) => {
     try {
@@ -63,11 +77,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem('sara-admin-token');
-  };
+
 
   const isAuthenticated = !!token && !!user;
 
