@@ -1,0 +1,10 @@
+export { default as HeroSection } from './HeroSection';
+export { default as TrustedBySection } from './TrustedBySection';
+export { default as ServicesPlatformSection } from './ServicesPlatformSection';
+export { default as FeaturedServicesSection } from './FeaturedServicesSection';
+export { default as DiscoverSolutionSection } from './DiscoverSolutionSection';
+export { default as ContactCTASection } from './ContactCTASection';
+export { default as HowWeWorkSection } from './HowWeWorkSection';
+export { default as SuccessStoriesPreview } from './SuccessStoriesPreview';
+export { default as FinalCTASection } from './FinalCTASection';
+export { default as FAQSection } from './FAQSection';

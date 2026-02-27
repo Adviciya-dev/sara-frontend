@@ -1,0 +1,9 @@
+export { default as ServiceHero } from './ServiceHero';
+export { default as ServiceAbout } from './ServiceAbout';
+export { default as ServiceWhyChooseUs } from './ServiceWhyChooseUs';
+export { default as ServiceProcess } from './ServiceProcess';
+export { default as ServiceSolutions } from './ServiceSolutions';
+export { default as ServiceForms } from './ServiceForms';
+export { default as ServiceCTA } from './ServiceCTA';
+export { default as ServiceFAQ } from './ServiceFAQ';
+export { default as ServiceBlogs } from './ServiceBlogs';
